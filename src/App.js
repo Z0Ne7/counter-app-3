@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { counterPlus, counterMinus } from './actions';
 
-function App() {
+function App(props) {
+  const dispatch = useDispatch();
+  const HandleOnClickPlus = () => {
+    console.log(props);
+    dispatch(counterPlus());
+  };
+  const HandleOnClickMinus = () => {
+    console.log(props);
+    dispatch(counterMinus());
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hello</h1>
+      <p>You clicked {props.counterState} times</p>
+      <button onClick={HandleOnClickPlus}>+</button>
+      <button onClick={HandleOnClickMinus}>-</button>
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    counterState: state.counterReducer,
+  }
+}
+export default connect(mapStateToProps, null)(App);
