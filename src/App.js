@@ -5,11 +5,11 @@ import { counterPlus, counterMinus } from './actions';
 function App(props) {
   const dispatch = useDispatch();
   const HandleOnClickPlus = () => {
-    console.log(props);
+    // console.log(props);
     dispatch(counterPlus());
   };
   const HandleOnClickMinus = () => {
-    console.log(props);
+    // console.log(props);
     dispatch(counterMinus());
   };
   return (
@@ -23,7 +23,7 @@ function App(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    counterState: state.counterReducer,
+    counterState: state.counterReducer.count,
   }
 }
 export default connect(mapStateToProps, null)(App);
